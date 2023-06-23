@@ -1,20 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, SafeAreaView} from 'react-native';
+import { styles } from './styles';
+import { useState } from 'react';
 
 export default function App() {
+  const [borderColor, setBorderColor] = useState('#264653')
+
+  const onHandlerFocus = () => {
+    setBorderColor('#424D9E')
+  }
+
+  const onHandlerBlur = () => {
+    setBorderColor('#424D9E') 
+  }
   return (
-    <View style={styles.container}>
-      <Text>Welcome to my app</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.safeArea}> 
+      <View style={styles.container}>
+        <View style={styles.inputContainer}>
+          <TextInput 
+          style={[styles.input, { borderColor: borderColor}]} 
+          placeholder='Welcome'
+          autoCapitalize='none'
+          autoCorrect={false}
+          cursorColor='#e76f51'
+          selectionColor='#e76f51'
+          placeholderTextColor='#264653'
+          onFocus={onHandlerFocus}
+          onBlur={onHandlerBlur}
+          /> 
+          <Button title='Creat' color= '#e76f51' />
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
