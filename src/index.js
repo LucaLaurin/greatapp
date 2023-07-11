@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { SafeAreaView, StyleSheet, View, Text, Button } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Text, Button, ActivityIndicator } from 'react-native';
+import { useFonts } from 'expo-font';
 
 import { Header } from './components';
 import { Categories, Products } from './screens';
@@ -10,6 +11,12 @@ const categoryDefault = {
   color: COLORS.primary,
 };
 export default function App() {
+  const [loaded] = useFonts ({
+    'Nunito-Regular': require('../assets/fonts/Nunito-Regular.ttf'),
+    'Nunito-Light': require('../assets/fonts/Nunito-Light.ttf'),
+    'Nunito-Medium': require('../assets/fonts/Nunito-Medium.ttf'),
+    'Nunito-Black': require('../assets/fonts/Nunito-Black.ttf'),
+  })
   const [isCategorySelected, setIsCategorySelected] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(categoryDefault);
 
@@ -23,6 +30,7 @@ export default function App() {
     setIsCategorySelected(!isCategorySelected);
     setSelectedCategory(categoryDefault);
   };
+
 
   return (
     <SafeAreaView style={styles.container}>
