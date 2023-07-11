@@ -1,99 +1,48 @@
-import { useState } from "react";
-import {
-  Modal,
-  Text,
-  View,
-  TextInput,
-  Button,
-  SafeAreaView,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { useState } from 'react';
+import { SafeAreaView, StyleSheet, View, Text, Button } from 'react-native';
 
-import { InputTask, TaskItem } from "./components";
-import { styles } from "./styles";
+import { Header } from './components';
+import { Categories, Products } from './screens';
+import { COLORS } from './themes';
 
+const categoryDefault = {
+  categoryId: null,
+  color: COLORS.primary,
+};
 export default function App() {
-  const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState([]);
-  const [isVisible, setIsVisible] = useState(false);
-  const [selectedTask, setSelectedTask] = useState(null);
-  const [borderColor, setBorderColor] = useState("#C5C9E7");
+  const [isCategorySelected, setIsCategorySelected] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(categoryDefault);
 
-  const onHandlerFocus = () => {
-    setBorderColor("#424D9E");
+  const headerTitle = isCategorySelected ? 'Products' : 'Categories';
+
+  const onHandleSelectCategory = ({ categoryId, color }) => {
+    setSelectedCategory({ categoryId, color });
+    setIsCategorySelected(!isCategorySelected);
   };
-
-  const onHandlerBlur = () => {
-    setBorderColor("#C5C9E7");
+  const onHandleNavigate = () => {
+    setIsCategorySelected(!isCategorySelected);
+    setSelectedCategory(categoryDefault);
   };
-
-  const onHandlerChangeText = (text) => {
-    setTask(text);
-  };
-
-  const onHandlerCreateTask = () => {
-    console.log("onHandlerCreateTask");
-    console.warn({ task });
-    setTasks([
-      ...tasks,
-      {
-        id: Date.now().toString(),
-        value: task,
-      },
-    ]);
-
-    setTask("");
-  };
-
-  const onHandlerModal = (item) => {
-    setIsVisible(true);
-    setSelectedTask(item);
-  };
-
-  const onHandleDelete = (id) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
-    setIsVisible(false);
-  };
-
-  const renderItem = ({ item }) => <TaskItem item={item} onPressItem={onHandlerModal} />;
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <InputTask
-          borderColor={borderColor}
-          onHandlerBlur={onHandlerBlur}
-          onHandlerChangeText={onHandlerChangeText}
-          onHandlerCreateTask={onHandlerCreateTask}
-          onHandlerFocus={onHandlerFocus}
-          task={task}
-        />
-        <FlatList
-          data={tasks}
-          renderItem={renderItem}
-          style={styles.listContainer}
-          convtentContainerStyle={styles.list}
-          alwaysBounceVertical={false}
-          keyExtractor={(item) => item.id}
-        />
+        <Header title={headerTitle} style={{ backgroundColor: selectedCategory.color }} />
+        {isCategorySelected ? (
+          <Products onHandleGoBack={onHandleNavigate} categorySelected={selectedCategory} />
+        ) : (
+          <Categories onSelectCategory={onHandleSelectCategory} />
+        )}
       </View>
-      <Modal visible={isVisible} animationType="slide">
-        <View style={styles.modalContainer}>
-          <Text style={styles.modalTitle}>Task Detail</Text>
-          <View style={styles.modalDetailContainer}>
-            <Text style={styles.modalDetailMessage}>Are you sure to delete this item?</Text>
-            <Text style={styles.selectedTask}>{selectedTask?.value}</Text>
-          </View>
-          <View style={styles.modalButtonContainer}>
-            <Button title="Cancel" color="#424D9E" onPress={() => setIsVisible(false)} />
-            <Button title="Delete" color="red" onPress={() => onHandleDelete(selectedTask?.id)} />
-          </View>
-        </View>
-      </Modal>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 
 
