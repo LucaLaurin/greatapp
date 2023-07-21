@@ -7,10 +7,10 @@ import { FONTS, COLORS } from './themes';
 
 export default function App() {
   const [loaded] = useFonts({
-    [FONTS.regular]: require('../assets/fonts/Inter-Regular.ttf'),
-    [FONTS.bold]: require('../assets/fonts/Inter-Bold.ttf'),
-    [FONTS.medium]: require('../assets/fonts/Inter-Medium.ttf'),
-    [FONTS.light]: require('../assets/fonts/Inter-Light.ttf'),
+    [FONTS.regular]: require('../assets/fonts/Nunito-Black.ttf'),
+    [FONTS.bold]: require('../assets/fonts/Nunito-Light.ttf'),
+    [FONTS.medium]: require('../assets/fonts/Nunito-Medium.ttf'),
+    [FONTS.light]: require('../assets/fonts/Nunito-Regular.ttf'),
   });
 
   if (!loaded) {
