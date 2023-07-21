@@ -1,6 +1,6 @@
 export const FONTS = {
-    regular: 'Inter-Regular',
-    bold: 'Inter-Bold',
-    medium: 'Inter-Medium',
-    light: 'Inter-Light',
+    regular: 'Nunito-Regular',
+    bold: 'Nunito-Black',
+    medium: 'Nunito-Medium',
+    light: 'Nunito-Light',
   };
