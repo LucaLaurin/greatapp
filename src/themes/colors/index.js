@@ -1,8 +1,10 @@
 export const COLORS = {
-    primary: '#F2B263',
-    secodary: '#F28585',
-    text: '#000000',
-    background: '#F2F0FA',
-    black: '#000000',
-    white: '#FFFFFF',
-  };
+  primary: '#A293DC',
+  secodary: '#5F46C3',
+  text: '#000000',
+  background: '#F2F0FA',
+  black: '#000000',
+  white: '#FFFFFF',
+  gray: '#CCCCCC',
+  error: '#E23428',
+};

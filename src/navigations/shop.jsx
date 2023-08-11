@@ -1,71 +1,73 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Animated, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons/';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useSelector } from 'react-redux';
 
-import { Categories, Products, ProductDetail } from '../screens';
+import CartNavigator from './cart';
+import OrdersNavigator from './orders';
+import ShopNavigator from './shop';
 import { COLORS, FONTS } from '../themes';
-const Stack = createNativeStackNavigator();
 
-function ShopNavigator() {
+const BottomTab = createBottomTabNavigator();
+
+const TabsNavigator = () => {
+  const cartItems = useSelector((state) => state.cart.items);
   return (
-    <Stack.Navigator
-      initialRouteName="Categories"
-      screenOptions={() => ({
-        headerStyle: {
-          backgroundColor: COLORS.primary,
-          height: 80,
+    <BottomTab.Navigator
+      initialRouteName="ShopTab"
+      screenOptions={{
+        headerShown: false,
+        tabBarLabelStyle: {
+          fontFamily: FONTS.regular,
+          fontSize: 10,
         },
-        headerTitleStyle: {
-          fontFamily: FONTS.bold,
-          fontSize: 16,
+        tabBarStyle: {
+          backgroundColor: COLORS.white,
         },
-        headerTintColor: COLORS.white,
-        animation: 'fade_from_bottom',
-      })}>
-      <Stack.Screen name="Categories" component={Categories} />
-      <Stack.Screen
-        name="Products"
-        component={Products}
-        options={({ navigation, route }) => ({
-          headerStyle: {
-            backgroundColor: route.params.color,
+        tabBarActiveTintColor: COLORS.primary,
+        tabBarInactiveTintColor: COLORS.gray,
+        tabBarIconStyle: {
+          fontSize: 22,
+        },
+      }}>
+      <BottomTab.Screen
+        name="ShopTab"
+        component={ShopNavigator}
+        options={{
+          tabBarLabel: 'Shop',
+          tabBarIcon: ({ focused, color }) => {
+            return <Ionicons name={focused ? 'home' : 'home-outline'} size={20} color={color} />;
           },
-          headerLeft: () => (
-            <TouchableOpacity style={styles.goBack} onPress={() => navigation.goBack()}>
-              <Ionicons name="arrow-back-circle" size={30} color={COLORS.white} />
-            </TouchableOpacity>
-          ),
-          title: route.params.name,
-        })}
+        }}
       />
-      <Stack.Screen
-        name="ProductDetail"
-        component={ProductDetail}
-        options={({ navigation, route }) => ({
-          headerStyle: {
-            backgroundColor: route.params.color,
+      <BottomTab.Screen
+        name="CartTab"
+        component={CartNavigator}
+        options={{
+          tabBarLabel: 'Cart',
+          tabBarIcon: ({ focused, color }) => (
+            <Ionicons name={focused ? 'cart' : 'cart-outline'} size={20} color={color} />
+          ),
+          tabBarBadge: cartItems.length,
+          tabBarBadgeStyle: {
+            backgroundColor: COLORS.secodary,
+            color: COLORS.white,
+            fontFamily: FONTS.regular,
+            fontSize: 11,
           },
-          headerLeft: () => (
-            <TouchableOpacity style={styles.goBack} onPress={() => navigation.goBack()}>
-              <Ionicons name="arrow-back-circle" size={30} color={COLORS.white} />
-            </TouchableOpacity>
-          ),
-          title: route.params.name,
-        })}
+        }}
       />
-    </Stack.Navigator>
+      <BottomTab.Screen
+        name="OrdersTab"
+        component={OrdersNavigator}
+        options={{
+          tabBarLabel: 'Orders',
+          tabBarIcon: ({ focused, color }) => (
+            <Ionicons name={focused ? 'file-tray' : 'file-tray-outline'} size={20} color={color} />
+          ),
+        }}
+      />
+    </BottomTab.Navigator>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  goBack: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  goBackText: {
-    fontSize: 14,
-    color: COLORS.text,
-  },
-});
-
-export default ShopNavigator;
+export default TabsNavigator;

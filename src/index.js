@@ -2,19 +2,27 @@ import { useFonts } from 'expo-font';
 import { SafeAreaView, StyleSheet, View, ActivityIndicator } from 'react-native';
 import { Provider } from 'react-redux';
 
+import { init } from './db';
 import RootNavigator from './navigations';
 import { store } from './store';
 import { FONTS, COLORS } from './themes';
 
+init()
+  .then(() => {
+    console.log('Initialized database');
+  })
+  .catch((err) => {
+    console.log('Initializing db failed');
+    console.log(err);
+  });
 
 export default function App() {
   const [loaded] = useFonts({
-    [FONTS.regular]: require('../assets/fonts/Nunito-Black.ttf'),
-    [FONTS.bold]: require('../assets/fonts/Nunito-Light.ttf'),
-    [FONTS.medium]: require('../assets/fonts/Nunito-Medium.ttf'),
-    [FONTS.light]: require('../assets/fonts/Nunito-Regular.ttf'),
+    [FONTS.regular]: require('../assets/fonts/Inter-Regular.ttf'),
+    [FONTS.bold]: require('../assets/fonts/Inter-Bold.ttf'),
+    [FONTS.medium]: require('../assets/fonts/Inter-Medium.ttf'),
+    [FONTS.light]: require('../assets/fonts/Inter-Light.ttf'),
   });
-
 
   if (!loaded) {
     return (
@@ -26,9 +34,9 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <RootNavigator />
-      </SafeAreaView>
+      </View>
     </Provider>
   );
 }
@@ -43,5 +51,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-

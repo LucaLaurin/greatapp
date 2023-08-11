@@ -1,23 +1,45 @@
-import { View, Text } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux';
+import { StyleSheet } from 'react-native';
 
-import { styles } from './styles';
-import { CartItem } from '../../components';
+import { COLORS, FONTS } from '../../themes';
 
-const Cart = () => {
-  const cart = useSelector((state) => state.cart.items);
-
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={cart}
-        renderItem={({ item }) => <CartItem {...item} />}
-        keyExtractor={(item) => item.id.toString()}
-        style={styles.listContainer}
-      />
-    </View>
-  );
-};
-
-export default Cart;
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  listContainer: {
+    flex: 1,
+    backgroundColor: COLORS.white,
+  },
+  footerContainer: {
+    backgroundColor: COLORS.background,
+    borderTopColor: COLORS.secodary,
+    borderTopWidth: 4,
+    padding: 10,
+  },
+  checkoutButton: {
+    backgroundColor: COLORS.secodary,
+    borderRadius: 5,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 50,
+  },
+  checkoutButtonText: {
+    color: COLORS.white,
+    fontFamily: FONTS.bold,
+  },
+  totalContainer: {
+    flexDirection: 'row',
+    gap: 5,
+  },
+  totalText: {
+    color: COLORS.white,
+    fontFamily: FONTS.bold,
+  },
+  totalPriceText: {
+    color: COLORS.white,
+    fontFamily: FONTS.bold,
+  },
+});
