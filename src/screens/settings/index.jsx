@@ -1,25 +1,31 @@
-import { View, Text, FlatList } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import { styles } from './styles';
-import { MenuItem } from '../../components';
-import { MENUS } from '../../constants/data/menus';
+import { ImageSelector } from '../../components';
+import { useGetProfileQuery, useUpdateImageProfileMutation } from '../../store/settings/api';
+import { COLORS } from '../../themes';
 
-const Settings = ({ navigation }) => {
-  const onSelect = ({ route }) => {
-    navigation.navigate(route);
+const Profile = () => {
+  const localId = useSelector((state) => state.auth.user.localId);
+  const [uploadImageProfile, { data, isLoading, error }] = useUpdateImageProfileMutation();
+  const { data: userData, isLoading: isLoadingUserData } = useGetProfileQuery({ localId });
+  const onHandlerImage = async ({ uri, base64 }) => {
+    await uploadImageProfile({ localId, image: `data:image/jpeg;base64,${base64}` });
   };
-  const renderItem = ({ item }) => <MenuItem {...item} onSelect={onSelect} />;
-  const keyExtractor = (item) => item.id;
+
   return (
     <View style={styles.container}>
-      <FlatList
-        data={MENUS}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        contentContainerStyle={styles.settingList}
-      />
+      <View style={styles.header}>
+        <ImageSelector profileImage={userData?.profileImage} onSelect={onHandlerImage} />
+        {isLoading && (
+          <View style={styles.loading}>
+            <ActivityIndicator size="large" color={COLORS.primary} />
+          </View>
+        )}
+      </View>
     </View>
   );
 };
 
-export default Settings;
+export default Profile;

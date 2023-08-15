@@ -1,73 +1,98 @@
-import { Ionicons } from '@expo/vector-icons/';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useSelector } from 'react-redux';
+import { Ionicons } from '@expo/vector-icons';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Animated, Platform, StyleSheet, TouchableOpacity } from 'react-native';
+import { useDispatch } from 'react-redux';
 
-import CartNavigator from './cart';
-import OrdersNavigator from './orders';
-import ShopNavigator from './shop';
+import SettingsNavigator from './settings';
+import { Categories, Products, ProductDetail } from '../screens';
+import { logout } from '../store/auth/auth.slice';
 import { COLORS, FONTS } from '../themes';
+const Stack = createNativeStackNavigator();
 
-const BottomTab = createBottomTabNavigator();
-
-const TabsNavigator = () => {
-  const cartItems = useSelector((state) => state.cart.items);
+function ShopNavigator() {
+  const dispatch = useDispatch();
   return (
-    <BottomTab.Navigator
-      initialRouteName="ShopTab"
-      screenOptions={{
-        headerShown: false,
-        tabBarLabelStyle: {
-          fontFamily: FONTS.regular,
-          fontSize: 10,
+    <Stack.Navigator
+      initialRouteName="Categories"
+      screenOptions={({ navigation }) => ({
+        headerStyle: {
+          backgroundColor: COLORS.primary,
+          height: 80,
         },
-        tabBarStyle: {
-          backgroundColor: COLORS.white,
+        headerTitleStyle: {
+          fontFamily: FONTS.bold,
+          fontSize: 16,
         },
-        tabBarActiveTintColor: COLORS.primary,
-        tabBarInactiveTintColor: COLORS.gray,
-        tabBarIconStyle: {
-          fontSize: 22,
-        },
-      }}>
-      <BottomTab.Screen
-        name="ShopTab"
-        component={ShopNavigator}
-        options={{
-          tabBarLabel: 'Shop',
-          tabBarIcon: ({ focused, color }) => {
-            return <Ionicons name={focused ? 'home' : 'home-outline'} size={20} color={color} />;
+        headerTintColor: COLORS.white,
+        animation: 'fade_from_bottom',
+        headerRight: () => (
+          <TouchableOpacity
+            style={styles.icon}
+            onPress={() => navigation.navigate('SettingsStack')}>
+            <Ionicons name="settings-outline" size={24} color={COLORS.white} />
+          </TouchableOpacity>
+        ),
+        headerLeft: () => (
+          <TouchableOpacity style={styles.icon} onPress={() => dispatch(logout())}>
+            <Ionicons name="ios-log-out-outline" size={24} color={COLORS.white} />
+          </TouchableOpacity>
+        ),
+      })}>
+      <Stack.Screen name="Categories" component={Categories} />
+      <Stack.Screen
+        name="Products"
+        component={Products}
+        options={({ navigation, route }) => ({
+          headerStyle: {
+            backgroundColor: route.params.color,
           },
-        }}
-      />
-      <BottomTab.Screen
-        name="CartTab"
-        component={CartNavigator}
-        options={{
-          tabBarLabel: 'Cart',
-          tabBarIcon: ({ focused, color }) => (
-            <Ionicons name={focused ? 'cart' : 'cart-outline'} size={20} color={color} />
+          headerLeft: () => (
+            <TouchableOpacity style={styles.goBack} onPress={() => navigation.goBack()}>
+              <Ionicons name="arrow-back-circle" size={30} color={COLORS.white} />
+            </TouchableOpacity>
           ),
-          tabBarBadge: cartItems.length,
-          tabBarBadgeStyle: {
-            backgroundColor: COLORS.secodary,
-            color: COLORS.white,
-            fontFamily: FONTS.regular,
-            fontSize: 11,
+          title: route.params.name,
+        })}
+      />
+      <Stack.Screen
+        name="ProductDetail"
+        component={ProductDetail}
+        options={({ navigation, route }) => ({
+          headerStyle: {
+            backgroundColor: route.params.color,
           },
-        }}
-      />
-      <BottomTab.Screen
-        name="OrdersTab"
-        component={OrdersNavigator}
-        options={{
-          tabBarLabel: 'Orders',
-          tabBarIcon: ({ focused, color }) => (
-            <Ionicons name={focused ? 'file-tray' : 'file-tray-outline'} size={20} color={color} />
+          headerLeft: () => (
+            <TouchableOpacity style={styles.goBack} onPress={() => navigation.goBack()}>
+              <Ionicons name="arrow-back-circle" size={30} color={COLORS.white} />
+            </TouchableOpacity>
           ),
-        }}
+          title: route.params.name,
+        })}
       />
-    </BottomTab.Navigator>
+      <Stack.Screen
+        name="SettingsStack"
+        component={SettingsNavigator}
+        options={({ navigation, route }) => ({
+          headerShown: false,
+        })}
+      />
+    </Stack.Navigator>
   );
-};
+}
 
-export default TabsNavigator;
+const styles = StyleSheet.create({
+  goBack: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: Platform.OS === 'android' ? 15 : 0,
+  },
+  goBackText: {
+    fontSize: 14,
+    color: COLORS.text,
+  },
+  icon: {
+    marginRight: Platform.OS === 'android' ? 15 : 0,
+  },
+});
+
+export default ShopNavigator;

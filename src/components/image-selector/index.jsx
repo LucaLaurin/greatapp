@@ -14,7 +14,7 @@ import { COLORS } from '../../themes';
 const ImageSelector = ({ profileImage, onSelect }) => {
   const [image, setImage] = useState(null);
   const verifyPermissions = async () => {
-    // const { status } = await requestMediaLibraryPermissionsAsync();
+    
     const { status } = await requestCameraPermissionsAsync();
     if (status !== 'granted') {
       Alert.alert('Permission Denied', 'You need to grant camera permissions to use this app.', [
@@ -26,7 +26,7 @@ const ImageSelector = ({ profileImage, onSelect }) => {
   };
 
   const onHandleTakePhoto = async () => {
- 
+
     const isCameraPermission = await verifyPermissions();
     if (!isCameraPermission) return;
 
@@ -46,11 +46,7 @@ const ImageSelector = ({ profileImage, onSelect }) => {
     <View style={styles.container}>
       <TouchableOpacity style={styles.content} onPress={onHandleTakePhoto}>
         {image || profileImage ? (
-          <Image
-            source={{ uri: image || profileImage }}
-            style={styles.image}
-            resizeMode="contain"
-          />
+          <Image source={{ uri: image || profileImage }} style={styles.image} resizeMode="cover" />
         ) : (
           <Ionicons name="ios-camera" size={24} color={COLORS.primary} />
         )}
