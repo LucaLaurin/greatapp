@@ -26,7 +26,6 @@ const ImageSelector = ({ profileImage, onSelect }) => {
   };
 
   const onHandleTakePhoto = async () => {
-
     const isCameraPermission = await verifyPermissions();
     if (!isCameraPermission) return;
 

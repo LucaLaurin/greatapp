@@ -1,26 +1,21 @@
-import { StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 
-import { COLORS } from '../../themes';
+import { styles } from './styles';
+import { OrderItem } from '../../components';
+import { useGetOrdersQuery } from '../../store/orders/api';
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.background,
-  },
-  containerLoader: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  categoryContainer: {
-    marginTop: 15,
-    marginHorizontal: 15,
-  },
-  listCategory: {
-    gap: 15,
-    paddingBottom: 20,
-  },
-  categoryItemLandscape: {
-    height: 100,
-  },
-});
+const Orders = () => {
+  const { data, error, isLoading } = useGetOrdersQuery();
+
+  const renderItem = ({ item }) => <OrderItem {...item} />;
+
+  const keyExtractor = (item) => item.id.toString();
+  return (
+    <View style={styles.container}>
+      <FlatList data={data} renderItem={renderItem} keyExtractor={keyExtractor} />
+    </View>
+  );
+};
+
+export default Orders;

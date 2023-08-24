@@ -16,7 +16,6 @@ init()
     console.log(err);
   });
 
-
 export default function App() {
   const [loaded] = useFonts({
     [FONTS.regular]: require('../assets/fonts/Nunito-Black.ttf'),
@@ -24,7 +23,6 @@ export default function App() {
     [FONTS.medium]: require('../assets/fonts/Nunito-Medium.ttf'),
     [FONTS.light]: require('../assets/fonts/Nunito-Regular.ttf'),
   });
-
 
   if (!loaded) {
     return (
