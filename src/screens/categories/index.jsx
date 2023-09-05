@@ -8,6 +8,7 @@ import useOrientation from '../../hooks/useOrientation';
 import { useGetCategoriesQuery } from '../../store/categories/api';
 import { COLORS } from '../../themes';
 
+
 function Categories({ navigation }) {
   const { data, error, isLoading } = useGetCategoriesQuery();
 
@@ -16,12 +17,16 @@ function Categories({ navigation }) {
     navigation.navigate('Products', { categoryId, color, name });
   };
 
+
   if (isLoading)
-    return (
-      <View style={styles.containerLoader}>
-        <ActivityIndicator size="large" color={COLORS.primary} />
-      </View>
-    );
+
+  return (
+    <View style={styles.containerLoader}>
+      <ActivityIndicator size="large" color={COLORS.primary} />
+    </View>
+  );
+
+   
   return (
     <View style={styles.container}>
       <View style={styles.container}>

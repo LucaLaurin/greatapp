@@ -1,26 +1,26 @@
 [
     {
         "id": 1,
-        "name": "Smartphones",
+        "name": "Café",
         "backgroundColor": "#6D6AA0",
-        "backgroundImage": "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-c91d9.appspot.com/o/smartphones.png?alt=media&token=e2b564ea-5a7d-4fcc-be49-4e3cc25c1d5e"
+        "backgroundImage": "gs://imgs-e47e6.appspot.com/bfb5ab773a47d9da137b76206dc9e997.jpg"
     },
     {
         "id": 2,
-        "name": "Laptops",
+        "name": "Máquinas",
         "backgroundColor": "#3EC2CC",
-        "backgroundImage": "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-c91d9.appspot.com/o/laptops.png?alt=media&token=9f59e3e3-5377-43a6-87b1-874d939915a2"
+        "backgroundImage": "gs://imgs-e47e6.appspot.com/0b96ba99af9d06de9a5134997bef0d38.jpg"
     },
     {
         "id": 3,
-        "name": "Furniture",
+        "name": "Cursos",
         "backgroundColor": "#0DAB6C",
-        "backgroundImage": "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-c91d9.appspot.com/o/furniture.png?alt=media&token=445f15ed-29bc-400f-ba5e-a9a2c9d404f8"
+        "backgroundImage": "gs://imgs-e47e6.appspot.com/4633c0742fefe5f4ae17428770053158.jpg"
     },
     {
         "id": 4,
-        "name": "Tablets",
+        "name": "Otros",
         "backgroundColor": "#EC5B67",
-        "backgroundImage": "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-c91d9.appspot.com/o/tablets.png?alt=media&token=12713ac6-9e97-4569-9db0-382cbd9aa3ea"
+        "backgroundImage": "gs://imgs-e47e6.appspot.com/26f2fd7ed5e2d052fb863fedc24bc1ac.jpg"
     }
 ]

@@ -5,6 +5,7 @@ import { styles } from './styles';
 import { ImageSelector } from '../../components';
 import { useGetProfileQuery, useUpdateImageProfileMutation } from '../../store/settings/api';
 import { COLORS } from '../../themes';
+import { useState, useEffect } from 'react';
 
 const Profile = () => {
   const localId = useSelector((state) => state.auth.user.localId);
@@ -14,10 +15,17 @@ const Profile = () => {
     await uploadImageProfile({ localId, image: `data:image/jpeg;base64,${base64}` });
   };
 
+  const [ user , setUser ] = useState();
+
+  useEffect (() => {
+    setUser(userData)
+  }, [userData])
+
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <ImageSelector profileImage={userData?.profileImage} onSelect={onHandlerImage} />
+        <ImageSelector profileImage={user?.profileImage} onSelect={onHandlerImage} />
         {isLoading && (
           <View style={styles.loading}>
             <ActivityIndicator size="large" color={COLORS.primary} />

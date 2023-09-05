@@ -1,95 +1,78 @@
 [
     {
-        "id": 1,
-        "categoryId": 1,
-        "name": "Samsung Galaxy S23 Ultra",
-        "description": "Samsung Galaxy S23 Ultra 5G 256GB",
-        "price": 1250,
-        "image": "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-c91d9.appspot.com/o/products%2Fsamsung-galaxy-s23-ultra.png?alt=media&token=64c9c470-e5b9-44d0-939e-38bad88555c5",
-        "currency": {
-            "symbol": "$",
-            "code": "USD",
-            "name": "US Dollar"
-        },
-        "quantity": 1,
-        "tags": [
-            "samsung",
-            "galaxy",
-            "s23",
-            "ultra",
-            "5g",
-            "256gb"
-        ],
-        "features": [
-            "6.8-inch Dynamic AMOLED 2X display",
-            "Snapdragon 888 chipset",
-            "12GB RAM",
-            "256GB storage",
-            "108MP+10MP+10MP+12MP quad rear cameras",
-            "40MP front camera",
-            "5000mAh battery"
-        ],
-        "rating": 5,
-        "stock": 10
-    },
-    {
         "id": 2,
         "categoryId": 1,
-        "name": "Iphone 14 Pro Max",
-        "description": "Iphone 14 Pro Max 256GB",
+        "name": "Café de Guatemala",
+        "description": "Café de especialidad",
         "price": 1500,
-        "image": "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-c91d9.appspot.com/o/products%2Fiphone-14-pro-max.png?alt=media&token=313523a6-6c31-42c6-9034-7cb32b7c56a1",
+        "image": "gs://imgs-e47e6.appspot.com/1579203930ca5c575ed24b3d36e7ec42.jpg",
         "currency": {
             "symbol": "$",
-            "code": "USD",
-            "name": "US Dollar"
+            "code": "ARS",
+            "name": "Pesos"
         },
         "quantity": 1,
         "tags": [
-            "iphone",
-            "14",
-            "pro",
-            "max",
-            "256gb"
+            "Café",
+            "especialidad",
+            "guatemala"
         ],
         "features": [
-            "6.7-inch Super Retina XDR display",
-            "A15 Bionic chipset",
-            "6GB RAM",
-            "256GB storage",
-            "12MP+12MP+12MP triple rear cameras",
-            "12MP front camera",
-            "5000mAh battery"
+            "250gr",
+            "especialidad",
+            "guatemala"
         ],
         "rating": 4.5,
         "stock": 6
     },
+    { 
+        "id": 2,
+        "categoryId": 1,
+        "name": "Café de Ethiopia",
+        "description": "Café de especialidad",
+        "price": 3500,
+        "image": "gs://imgs-e47e6.appspot.com/b94469d5f8834383b40dfbc437d9e908.jpg",
+        "currency": {
+            "symbol": "$",
+            "code": "ARS",
+            "name": "Pesos"
+        },
+        "quantity": 3,
+        "tags": [
+            "Café",
+            "especialidad",
+            "ethiopia"
+        ],
+        "features": [
+            "250gr",
+            "especialidad",
+            "ethiopia"
+        ],
+        "rating": 5,
+        "stock": 1
+    },
     {
         "id": 3,
         "categoryId": 2,
-        "name": "Macbook Pro 2023 M2",
-        "description": "Macbook Pro 2023 M2 2TB",
-        "price": 3500,
-        "image": "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-c91d9.appspot.com/o/products%2Fmacbook-pro-m2.png?alt=media&token=a2fdd760-b7ff-4458-ae7f-4543bcea974d",
+        "name": "Italiana",
+        "description": "Cafetera tipo italiana",
+        "price": 6000,
+        "image": "gs://imgs-e47e6.appspot.com/c133c39e5d4c04154b56ff6b3d86f512.jpg",
         "currency": {
             "symbol": "$",
-            "code": "USD",
-            "name": "US Dollar"
+            "code": "ARS",
+            "name": "Pesos"
         },
         "quantity": 1,
         "tags": [
-            "macbook",
-            "pro",
-            "2023",
-            "m2",
-            "2tb"
+            "cafetera",
+            "italiana",
+            "acero"
         ],
         "features": [
-            "16-inch Retina display",
-            "Apple M2 chipset",
-            "32GB RAM",
-            "2TB storage",
-            "16GB AMD Radeon Pro 6700M graphics"
+            "acero",
+            "60ml",
+            "italiana"
         ],
         "rating": 5,
         "stock": 1
@@ -97,25 +80,25 @@
     {
         "id": 4,
         "categoryId": 3,
-        "name": "Tribute Lounge Chair",
-        "description": "For the home owner looking for the perfect dash of uniqueness, the colorful Tribute leather chairs will speak volumes of its owner's sense of style.",
-        "price": 550,
-        "image": "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-c91d9.appspot.com/o/products%2Ftribute-lounge-chair.png?alt=media&token=fc252570-6ab9-4d10-a680-96f10f5a2eb5",
+        "name": "Curso barista",
+        "description": "Curso nivel inicial de barista",
+        "price": 15000,
+        "image": "gs://imgs-e47e6.appspot.com/a49dc90ea4ea4758992e34c3aaafb61e.jpg",
         "currency": {
             "symbol": "$",
-            "code": "USD",
-            "name": "US Dollar"
+            "code": "ARS",
+            "name": "Pesos"
         },
         "quantity": 1,
         "tags": [
-            "tribute",
-            "lounge",
-            "chair"
+            "curso",
+            "barista",
+            "inicial"
         ],
         "features": [
-            "Material: Leather",
-            "Color: Brown",
-            "Dimensions: 30 x 30 x 30 inches"
+            "Nivel inicial",
+            "baristsa certificado",
+            "3 meses"
         ],
         "rating": 4.5,
         "stock": 5
@@ -123,32 +106,24 @@
     {
         "id": 5,
         "categoryId": 4,
-        "name": "Samsung Galaxy Tab S8 Ultra",
-        "description": "Samsung Galaxy Tab S8 Ultra 512GB",
+        "name": "Cápsulas de cafe",
+        "description": "Cápsulas de cafe tipo Nespresso",
         "price": 1350,
-        "image": "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-c91d9.appspot.com/o/products%2Fsamsung-galaxy-tab-s8-ultra.png?alt=media&token=491df109-7db9-40cb-9599-3252e99ed081",
+        "image": "gs://imgs-e47e6.appspot.com/f8e050115fbe757d6468c52a3f24153f.jpg",
         "currency": {
             "symbol": "$",
-            "code": "USD",
-            "name": "US Dollar"
+            "code": "ARS",
+            "name": "Pesos"
         },
         "quantity": 1,
         "tags": [
-            "samsung",
-            "galaxy",
-            "tab",
-            "s8",
-            "ultra",
-            "512gb"
+            "capsulas",
+            "Café",
+            "nespresso"
         ],
         "features": [
-            "14.6-inch Super AMOLED display",
-            "Snapdragon 888 chipset",
-            "12GB RAM",
-            "512GB storage",
-            "12MP+12MP dual rear cameras",
-            "8MP front camera",
-            "10000mAh battery"
+            "12 capsulas",
+            "tipo nespresso"
         ],
         "rating": 4,
         "stock": 20
